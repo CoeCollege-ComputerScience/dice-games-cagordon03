@@ -84,11 +84,10 @@ def rolltheBones():
         print(f"Current score: {playerScore}")
         totalTurns += 1
 
-        while True:
-            choice = input("Do you want to play again? (y/n): ")
-            if choice.lower() in ['y', 'n']:
-                break
+        choice = input("Do you want to play again? (y/n): ")
+        while choice not in ['y', 'n']:
             print("Invalid input. Please enter 'y' or 'n'.")
+            choice = input("Do you want to play again? (y/n): ")
 
         if choice == 'n':
             playing = False
@@ -97,6 +96,5 @@ def rolltheBones():
         averagePoints = playerScore / totalTurns
         print(f"Average points per turn: {averagePoints:.2f}")
     print(f"Final score: {playerScore}")
-    print("Game over!")
 
 rolltheBones()

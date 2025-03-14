@@ -100,7 +100,6 @@ def pig():
 # pig()
 
 import random
-import time
 
 def rollDice():
     return random.randint(1,6)
@@ -119,7 +118,7 @@ def pig():
             if roll == 1:
                 print("Rolled a 1! Turn over.")
                 turnScore = 0  # Reset turnScore to zero
-                break
+                break # exits the innermost while loop
             else:
                 turnScore += roll
                 print(f"Turn score: {turnScore}")
@@ -143,8 +142,46 @@ def pig():
                 break
             turn = 1
         
-        # Add a delay to simulate time between rounds
-        time.sleep(1)
+    print("Game over!")
+
+# pig()
+
+import random
+
+def rollDice():
+    return random.randint(1, 6)
+
+def pig():
+    playerScores = [0, 0]  # playerScores[0] for Player 1, playerScores[1] for Player 2
+    turn = 0  # 0 for Player 1, 1 for Player 2
+    game_over = False
+
+    while not game_over:
+        print(f"Player {turn + 1}'s turn")
+        turnScore = 0
+        rolling = True
+
+        while rolling:
+            roll = rollDice()
+            print(f"Rolled: {roll}")
+            if roll == 1:
+                print("Rolled a 1! Turn over.")
+                turnScore = 0
+                rolling = False
+            else:
+                turnScore += roll
+                print(f"Turn score: {turnScore}")
+                if playerScores[turn] + turnScore >= 100 or turnScore >= 20:
+                    rolling = False
+
+        playerScores[turn] += turnScore
+        print(f"Player {turn + 1} score: {playerScores[turn]}") # Update the score for the current player
+        if playerScores[turn] >= 100:
+            print(f"Player {turn + 1} wins!") # Update to use playerScores list
+            game_over = True
+        else:
+            turn = 1 - turn  # Switch player
+
     print("Game over!")
 
 pig()

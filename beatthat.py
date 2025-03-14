@@ -42,8 +42,9 @@ def rollDice():
 def beatThat():
     player1Score = 0
     player2Score = 0
+    game_over = False
 
-    while True:
+    while not game_over:
         print("Player 1's turn")
         player1Roll = rollDice()
         print(f"Rolled: {player1Roll}")
@@ -63,10 +64,10 @@ def beatThat():
 
         if player1Score >= 100:
             print("Player 1 wins the game!")
-            break
+            game_over = True # check if player 1 has reached 100 points
         elif player2Score >= 100:
             print("Player 2 wins the game!")
-            break
+            game_over = True # check if player 2 has reached 100 points
 
     print("Game over!")
 
